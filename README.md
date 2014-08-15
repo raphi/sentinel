@@ -5,7 +5,9 @@ Load monitoring project.
 
 Requirement
 ===========
-npm and node: http://nodejs.org/
+npm and node: http://nodejs.org/   
+Be sure to have the last npm version:    
+$ sudo npm install -g npm
 
 Install & Run ES
 ==========
