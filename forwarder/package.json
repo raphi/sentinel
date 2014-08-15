@@ -1,0 +1,11 @@
+{
+  "name": "datadog-fowarder",
+  "version": "1.0.0",
+  "description": "Fowarder sending machine's info to the central server",
+  "main": "forwarder.js",
+  "author": "Raphael Daguenet",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.40.0"
+  }
+}

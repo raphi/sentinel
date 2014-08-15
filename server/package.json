@@ -1,0 +1,14 @@
+{
+  "name": "datadog",
+  "version": "1.0.0",
+  "description": "Load monitoring web application project",
+  "main": "app.js",
+  "author": "Raphael Daguenet",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.6.3",
+    "elasticsearch": "^2.4.0",
+    "express": "^4.8.3",
+    "socket.io": "^1.0.6"
+  }
+}

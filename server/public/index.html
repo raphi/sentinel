@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <title>Load monitoring web app project</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+        <![endif]-->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css">
+        <link type="text/css" rel="stylesheet" href="assets/vendor/rickshaw.min.css">
+        <link type="text/css" rel="stylesheet" href="assets/css/radial.css">
+        <link type="text/css" rel="stylesheet" href="assets/css/datadog.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Average Load Monitoring Project</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+            <div id="content" class="starter-template">
+                <div class="alerts"></div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1>Server load for the last 2mn</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="radial_load_min" class="col-sm-4"></div>
+                    <div id="radial_load_avg" class="col-sm-4"></div>
+                    <div id="radial_load_max" class="col-sm-4"></div>
+                </div>
+                <div class="row">
+                    <h1>Average server load histogram</h1>
+                    <form id="side_panel" class="col-sm-3">
+                        <section><div id="legend"></div></section>
+                        <section>
+                            <div id="renderer_form" class="toggler">
+                                <input type="radio" name="renderer" id="area" value="area" checked>
+                                <label for="area">area</label>
+                                <input type="radio" name="renderer" id="bar" value="bar">
+                                <label for="bar">bar</label>
+                                <input type="radio" name="renderer" id="line" value="line">
+                                <label for="line">line</label>
+                                <input type="radio" name="renderer" id="scatter" value="scatterplot">
+                                <label for="scatter">scatter</label>
+                            </div>
+                        </section>
+                        <section>
+                            <div id="offset_form">
+                                <label for="stack">
+                                    <input type="radio" name="offset" id="stack" value="zero" checked>
+                                    <span>stack</span>
+                                </label>
+                                <label for="stream">
+                                    <input type="radio" name="offset" id="stream" value="wiggle">
+                                    <span>stream</span>
+                                </label>
+                                <label for="pct">
+                                    <input type="radio" name="offset" id="pct" value="expand">
+                                    <span>pct</span>
+                                </label>
+                                <label for="value">
+                                    <input type="radio" name="offset" id="value" value="value">
+                                    <span>value</span>
+                                </label>
+                            </div>
+                            <div id="interpolation_form">
+                                <label for="cardinal">
+                                    <input type="radio" name="interpolation" id="cardinal" value="cardinal" checked>
+                                    <span>cardinal</span>
+                                </label>
+                                <label for="linear">
+                                    <input type="radio" name="interpolation" id="linear" value="linear">
+                                    <span>linear</span>
+                                </label>
+                                <label for="step">
+                                    <input type="radio" name="interpolation" id="step" value="step-after">
+                                    <span>step</span>
+                                </label>
+                            </div>
+                        </section>
+                        <section>
+                            <h6>Smoothing</h6>
+                            <div id="smoother"></div>
+                        </section>
+                        <section></section>
+                    </form>
+
+                    <div id="chart_container" class="col-sm-9">
+                        <div id="chart"></div>
+                        <div id="timeline"></div>
+                        <div id="preview"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="alert alert-dismissible alert-template" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong class="message"></strong>
+        </div>
+
+        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+        <script src="assets/vendor/d3.min.js"></script>
+        <script src="assets/vendor/rickshaw.min.js"></script>
+        <script src="assets/js/extensions.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/assets/js/radial.js"></script>
+        <script src="/assets/js/datadog.js"></script>
+    </body>
+</html>
