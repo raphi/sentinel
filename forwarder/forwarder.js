@@ -1,5 +1,5 @@
+var os = require('os');
 var request = require('request');
-var exec = require('child_process').exec;
 
 // Central server that aggregates forwarder's data
 var SERVER = 'http://0.0.0.0:8080'
@@ -10,13 +10,13 @@ var FORWARDER_NAME = 'aws_2'
 
 
 // Extract the command load average information
-function loadAvgCallback(error, stdout, stderr) { 
-  if (error)
-    return console.error(error);
+function broadcastLoadAvg() { 
+  var loadAvg = os.loadavg();
+  var load = loadAvg[0];
 
-  var res = stdout.split(' ');
+  console.log(load);
 
-  forwardInfo(parseFloat(res[1]));
+  forwardInfo(parseFloat(load));
 }
 
 // Send the info to the main server through HTTP request
@@ -30,7 +30,7 @@ function forwardInfo(loagAvg) {
       name: FORWARDER_NAME,
       load: loagAvg
     })
-  }, function(error, response, body){
+  }, function(error, response, body) {
     if (error) {
       console.error('Error: Main server down')
       return console.error(error);
@@ -41,6 +41,4 @@ function forwardInfo(loagAvg) {
 }
 
 // Run this script infinitely
-setInterval(function() {
-  exec('sysctl -n vm.loadavg', loadAvgCallback);
-}, INTERVAL);
+setInterval(broadcastLoadAvg, INTERVAL);
