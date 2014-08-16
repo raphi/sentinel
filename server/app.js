@@ -11,8 +11,9 @@ var es = new elasticsearch.Client({
 
 // Constants
 var SERVER_PORT = 8080
-var AVERAGE_LOAD_ALERT = 2
-var CHECK_LOAD_INTERVAL = 60000
+var AVERAGE_LOAD_ALERT = 1
+// Every 30sc
+var CHECK_LOAD_INTERVAL = 30000
 var MACHINES_PATTERN = 'aws_2'
 
 
